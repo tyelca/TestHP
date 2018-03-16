@@ -17,4 +17,13 @@ tmp/
 
 # Maven
 
-target
+target/
+
+build/
+
+
+
+# Binaries
+*.jar
+*.war
+*.class
