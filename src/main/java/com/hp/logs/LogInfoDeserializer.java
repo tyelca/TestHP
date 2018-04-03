@@ -4,6 +4,9 @@ import java.io.IOException;
 
 import javax.inject.Singleton;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -27,6 +30,11 @@ import com.hp.logs.treatment.message.TreatmentMessageStatusType;
 
 @Singleton
 public class LogInfoDeserializer extends JsonDeserializer<LogInfo>{
+	
+
+	public static final Logger logger =LogManager.getLogger(LogInfoDeserializer.class.getCanonicalName());
+
+
 
 	private TreatmentLogInfo treatInfo;
 
@@ -39,11 +47,11 @@ public class LogInfoDeserializer extends JsonDeserializer<LogInfo>{
 
 	@Override
 	public LogInfo deserialize(JsonParser parser, DeserializationContext ctx)
-			throws IOException, JsonProcessingException {
+			throws IOException {
 		
 		JsonNode node = parser.readValueAsTree();
-		System.out.println("Nodo = " + node.toString());
-		
+	
+		logger.debug(String.format("Nodo = %s", node.toString()));	
 		
 		this.treatInfo = new TreatmentLogInfo(statsMng);
 		

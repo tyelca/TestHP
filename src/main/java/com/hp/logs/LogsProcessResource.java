@@ -1,6 +1,6 @@
 package com.hp.logs;
 
-import java.util.logging.Logger;
+
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -12,6 +12,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.hp.logs.entity.Statistic;
 import com.hp.logs.entity.StatisticSummary;
 
@@ -19,7 +22,8 @@ import com.hp.logs.entity.StatisticSummary;
 @ApplicationScoped
 public class LogsProcessResource {
 
-	public static final Logger logger = Logger.getLogger(LogsProcessResource.class.getCanonicalName());
+	
+	public static final Logger logger =LogManager.getLogger(LogsProcessResource.class.getCanonicalName());
 
 	@Inject
 	private LogService prueba;

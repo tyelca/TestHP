@@ -1,7 +1,9 @@
 package com.hp.logs.treatment.message;
 
 import java.io.IOException;
-import java.util.logging.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.hp.logs.LogInfoStatisticManager;
@@ -11,7 +13,7 @@ import com.hp.logs.treatment.TreatmentHandler;
 
 public class TreatmentMessageStatusType extends TreatmentHandler {
 
-	public static final Logger logger = Logger.getLogger(TreatmentMessageStatusType.class.getCanonicalName());
+	public static final Logger logger = LogManager.getLogger(TreatmentMessageStatusType.class.getCanonicalName());
 
 	public TreatmentMessageStatusType(LogInfoStatisticManager statsMng) {
 		super(statsMng);
@@ -20,7 +22,7 @@ public class TreatmentMessageStatusType extends TreatmentHandler {
 	@Override
 	public LogInfo process(JsonNode node) {
 
-		logger.info(String.format("TreatmentMessageStatusType"));
+		logger.debug(String.format("TreatmentMessageStatusType - Node = %s", node.toString()));
 
 		LogInfo datum = null;
 

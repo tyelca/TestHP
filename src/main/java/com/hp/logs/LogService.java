@@ -2,7 +2,6 @@ package com.hp.logs;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -12,6 +11,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.logging.LoggingFeature;
 
@@ -33,7 +34,7 @@ public class LogService {
 	private String selectedFilePath = "";
 	private String lastSelectedFile = "";
 
-	public static final Logger logger = Logger.getLogger(LogService.class.getCanonicalName());
+	public static final Logger logger = LogManager.getLogger(LogService.class.getCanonicalName());
 
 	private Client client;
 
@@ -107,7 +108,7 @@ public class LogService {
 			}
 
 		} catch (IOException e) {
-			logger.info(String.format("Error parsing file. Details : %s", e.getMessage()));
+			logger.error(String.format("Error parsing file. Details : %s", e.getMessage()));
 		}
 
 		return beanList1;

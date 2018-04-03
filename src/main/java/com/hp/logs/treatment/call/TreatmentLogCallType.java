@@ -1,6 +1,9 @@
 package com.hp.logs.treatment.call;
 
-import java.util.logging.Logger;
+
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.hp.logs.LogInfoStatisticManager;
@@ -9,7 +12,7 @@ import com.hp.logs.treatment.TreatmentHandler;
 
 public class TreatmentLogCallType extends TreatmentHandler {
 	
-	public static final Logger logger = Logger.getLogger(TreatmentLogCallType.class.getCanonicalName());
+	public static final Logger logger = LogManager.getLogger(TreatmentLogCallType.class.getCanonicalName());
 	
 	public TreatmentLogCallType(LogInfoStatisticManager statsMng) {
 		super(statsMng);
@@ -18,7 +21,7 @@ public class TreatmentLogCallType extends TreatmentHandler {
 	@Override
 	public LogInfo process(JsonNode node) {
 
-		logger.info(String.format("TreatmentLogCallType"));
+		logger.debug(String.format("TreatmentLogCallType - Node = %s", node.toString()));
 		
 		LogInfo datum = null;
 		

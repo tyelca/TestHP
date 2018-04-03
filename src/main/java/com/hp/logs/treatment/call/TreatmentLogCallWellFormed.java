@@ -1,6 +1,7 @@
 package com.hp.logs.treatment.call;
 
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.hp.logs.LogInfoStatisticManager;
@@ -9,9 +10,10 @@ import com.hp.logs.entity.LogInfo;
 import com.hp.logs.treatment.TreatmentHandler;
 
 public class TreatmentLogCallWellFormed extends TreatmentHandler {
-	
-	public static final Logger logger = Logger.getLogger(TreatmentLogCallWellFormed.class.getCanonicalName());
-	
+
+	public static final Logger logger = LogManager.getLogger(TreatmentLogCallWellFormed.class.getCanonicalName());
+
+		
 	public TreatmentLogCallWellFormed(LogInfoStatisticManager statsMng) {
 		super(statsMng);
 	}
@@ -19,7 +21,7 @@ public class TreatmentLogCallWellFormed extends TreatmentHandler {
 	@Override
 	public LogInfo process(JsonNode node) {
 
-		logger.info(String.format("TreatmentLogCallWellFormed"));
+		logger.debug(String.format("TreatmentLogCallWellFormed - Node = %s", node.toString()));
 		
 		long origin = node.get("origin").asLong();
 		long destination = node.get("destination").asLong();
